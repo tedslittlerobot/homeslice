@@ -1,6 +1,14 @@
 
-source vagrant.sh
-source php.sh
+export HOMESLICE_DIR=${HOMESLICE_DIR:-~/.homeslice}
+
+function upslice {
+	pushd ${HOMESLICE_DIR} > /dev/null
+	git pull
+	popd > /dev/null
+}
+
+source ${HOMESLICE_DIR}/vagrant.sh
+source ${HOMESLICE_DIR}/php.sh
 
 # git aliases
 
