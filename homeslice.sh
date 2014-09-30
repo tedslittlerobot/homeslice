@@ -1,4 +1,7 @@
 
+source vagrant.sh
+source php.sh
+
 # git aliases
 
 alias gitbattle='git shortlog -s -n'
