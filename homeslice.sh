@@ -5,6 +5,7 @@ function upslice {
 	pushd ${HOMESLICE_DIR} > /dev/null
 	git pull
 	popd > /dev/null
+	source ${HOMESLICE_DIR}/homeslice.sh
 }
 
 source ${HOMESLICE_DIR}/vagrant.sh
@@ -17,21 +18,21 @@ alias gitbattle='git shortlog -s -n'
 # transfer file
 
 function transfer {
-  curl --upload-file ./$1 https://transfer.sh/$1 | pbcopy
+	curl --upload-file ./$1 https://transfer.sh/$1 | pbcopy
 }
 
 # mkdir -p, then cd into it
 
 function mkcd {
-  test -z $1 && echo "You must specify a folder to create, idiot" >&2 && return
-  mkdir -p $1
-  cd $1
+	test -z $1 && echo "You must specify a folder to create, idiot" >&2 && return
+	mkdir -p $1
+	cd $1
 }
 
 # show your top git commands
 
 function topcmd {
-  history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+	history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
 # show @todo tags in the project dir
@@ -52,5 +53,5 @@ alias key='cat ~/.ssh/id_rsa.pub | pbcopy'
 # servers file
 
 if [ -f ~/.servers ]; then
-    source ~/.servers
+	source ~/.servers
 fi
