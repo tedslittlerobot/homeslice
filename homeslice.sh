@@ -21,6 +21,12 @@ function transfer {
 	curl --upload-file ./$1 https://transfer.sh/$1 | pbcopy
 }
 
+# quick look
+
+function ql {
+	qlmanage -p "$@" >& /dev/null
+}
+
 # mkdir -p, then cd into it
 
 function mkcd {
