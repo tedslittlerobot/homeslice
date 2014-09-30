@@ -26,6 +26,12 @@ function topcmd {
   history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 }
 
+# show @todo tags in the project dir
+
+# function todolist {
+	# grep -rn "@todo" . | awk -F ":" '$$1 != "./Makefile" {print $$3; print $$1 $$2  }'
+# }
+
 
 alias sthost='st /etc/hosts'
 alias stz='st ~/.zshrc'
