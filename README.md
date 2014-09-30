@@ -1,8 +1,16 @@
 homeslice
 =========
 
-Clone into your home directory, then add
+Clone into your home directory (maybe with a dot prefix to hide)
 
-`source ~/homeslice/homeslice.sh`
+```bash
+git clone git@github.com:tedslittlerobot/homeslice.git .homeslice
+```
 
-to your zshrc, bashrc or whatever
+then add
+
+```bash
+source ~/.homeslice/homeslice.sh
+```
+
+to your zshrc, bashrc or whatever rc you use
