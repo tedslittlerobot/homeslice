@@ -1,6 +1,8 @@
 homeslice
 =========
 
+## Installing
+
 Clone into your home directory (maybe with a dot prefix to hide)
 
 ```bash
@@ -26,4 +28,14 @@ Or, if you're a serious bash ninja, you can condense the source and variable int
 
 ```bash
 source ${HOMESLICE_DIR:=~/somewhere/homeslice}/homeslice.sh
+```
+
+## Updating
+
+`cd` into your homeslice dir, and git pull
+
+or use a handy command that does all that for you...
+
+```bash
+upslice
 ```
