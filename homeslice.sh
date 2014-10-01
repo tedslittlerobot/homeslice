@@ -8,6 +8,8 @@ function upslice {
 	source ${HOMESLICE_DIR}/homeslice.sh
 }
 
+source ${HOMESLICE_DIR}/os.sh
+
 source ${HOMESLICE_DIR}/vagrant.sh
 source ${HOMESLICE_DIR}/php.sh
 
