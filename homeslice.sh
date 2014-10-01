@@ -20,13 +20,11 @@ alias gitbattle='git shortlog -s -n'
 # transfer file
 
 function transfer {
-	curl --upload-file ./$1 https://transfer.sh/$1 | pbcopy
-}
-
-# quick look
-
-function ql {
-	qlmanage -p "$@" >& /dev/null
+	if [[ "$HOMESLICE_OS" == "osx" ]]; then
+		curl --upload-file ./$1 https://transfer.sh/$1 | pbcopy
+	else
+		curl --upload-file ./$1 https://transfer.sh/$1
+	fi
 }
 
 # mkdir -p, then cd into it
