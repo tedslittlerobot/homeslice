@@ -4,7 +4,7 @@ export HOMESLICE_DIR=${HOMESLICE_DIR:-~/.homeslice}
 function upslice {
 	pushd ${HOMESLICE_DIR} > /dev/null
 	git pull
-	popd > /dev/null
+	popd >& /dev/null
 	source ${HOMESLICE_DIR}/homeslice.sh
 }
 
