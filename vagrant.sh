@@ -1,21 +1,20 @@
 
-# Vagrant shortcuts
+# Vagrant Box shortcuts
 
-alias vin='ssh vagrant@127.0.0.1 -p 2222' # vagrant in
-alias vup='vagrant up' # up
-alias vsr='vagrant halt && vagrant up' # soft reset
-alias vhr='vagrant destroy -f && vagrant up' # hard reset
-alias vp='vagrant provision' # provision
-alias vd='vagrant halt' # vagrant down
+alias vmssh='ssh vagrant@127.0.0.1 -p 2222' # vagrant in
+alias vmup='vagrant up' # up
+alias vmsr='vagrant halt && vagrant up' # soft reset
+alias vmhr='vagrant destroy -f && vagrant up' # hard reset
+alias vmp='vagrant provision' # provision
+alias vmdown='vagrant halt' # vagrant down
+
 
 # Homestead shortcuts
 
 alias stead='ssh vagrant@127.0.0.1 -p 2222'
-alias hup='pushd ~/Homestead && vagrant up && popd'
-alias hsr='pushd ~/Homestead && vagrant halt && vagrant up && popd'
-alias hhr='pushd ~/Homestead && vagrant destroy -f && vagrant up && popd'
-alias hp='pushd ~/Homestead && vagrant provision && popd'
-alias hd='pushd ~/Homestead && vagrant halt && popd'
-
-alias sth='pushd ~/Homestead && stt && popd'
-alias hpf='sudo pfctl -evf /etc/pf.conf > /dev/null'
+alias hsup='pushd ~/Homestead > /dev/null && vagrant up && popd >& /dev/null'
+alias hssr='pushd ~/Homestead > /dev/null && vagrant halt && vagrant up && popd >& /dev/null'
+alias hshr='pushd ~/Homestead > /dev/null && vagrant destroy -f && vagrant up && popd >& /dev/null'
+alias hsp='pushd ~/Homestead > /dev/null && vagrant provision && popd >& /dev/null'
+alias hsdown='pushd ~/Homestead > /dev/null && vagrant halt && popd >& /dev/null'
+alias sth='pushd ~/Homestead > /dev/null && stt && popd >& /dev/null'
