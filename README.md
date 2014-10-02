@@ -17,6 +17,8 @@ source ~/.homeslice/homeslice.sh
 
 to your zshrc, bashrc or whatever rc you use
 
+## Custom Install
+
 If you choose a different directory to install homeslice to, assign its full path to `HOMESLICE_DIR`. So, for say, `~/somewhere/homeslice`:
 
 ```bash
