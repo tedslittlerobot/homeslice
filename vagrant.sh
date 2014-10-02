@@ -8,6 +8,10 @@ alias vmhr='vagrant destroy -f && vagrant up' # hard reset
 alias vmp='vagrant provision' # provision
 alias vmdown='vagrant halt' # vagrant down
 
+# reaload osx's port forwarding daemon
+if [[ "$HOMESLICE_OS" == "osx" ]]; then
+	alias vpf='sudo pfctl -evf /etc/pf.conf > /dev/null'
+fi
 
 # Homestead shortcuts
 
