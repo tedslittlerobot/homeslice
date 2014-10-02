@@ -1,4 +1,15 @@
 
+# Vagrant global shortcuts
+
+alias vls='VBoxManage list runningvms'
+
+if [[ "$HOMESLICE_OS" == "osx" ]]; then
+	# BSD's sed uses -E instead of -r
+	alias vdown="VBoxManage list runningvms | sed -E 's/.*\{(.*)\}/\1/' | xargs -L1 -I {} VBoxManage controlvm {} savestate"
+else
+	alias vdown="VBoxManage list runningvms | sed -r 's/.*\{(.*)\}/\1/' | xargs -L1 -I {} VBoxManage controlvm {} savestate"
+fi
+
 # Vagrant Box shortcuts
 
 alias vmssh='ssh vagrant@127.0.0.1 -p 2222' # vagrant in
