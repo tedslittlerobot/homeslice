@@ -35,6 +35,6 @@ alias hsup='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant up && popd >& /dev/nu
 alias hssr='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant halt && vagrant up && popd >& /dev/null'
 alias hshr='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant destroy -f && vagrant up && popd >& /dev/null'
 alias hsp='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant provision && popd >& /dev/null'
-alias hsd='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant halt && popd >& /dev/null'
+alias hsdown='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant halt && popd >& /dev/null'
 
 alias sth='pushd ${HOMESTEAD_DIR} >& /dev/null && stt && popd >& /dev/null'
