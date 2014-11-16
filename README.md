@@ -41,3 +41,15 @@ or use a handy command that does all that for you...
 ```bash
 upslice
 ```
+
+## Commands
+
+### Vagrant
+
+- `stead` SSH into Homestead
+- `hsup` Homestead `up`
+- `hssr` Homestead soft reset (`halt` + `up`)
+- `hshr` Homestead hard reset (`destroy` + `up`)
+- `hsp` Homestead `provision`
+- `hsdown` Homestead `halt`
+- `sth` Edit Homestead settings in Sublime
