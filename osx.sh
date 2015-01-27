@@ -10,5 +10,5 @@ function ql {
 alias gtt='gittower .'
 alias stg='stt && gittower .'
 alias hn='hostname | pbcopy'
-alias key='cat ~/.ssh/id_rsa.pub | pbcopy'
+alias cpkey='cat ~/.ssh/id_rsa.pub | pbcopy'
 alias browse='open .'
