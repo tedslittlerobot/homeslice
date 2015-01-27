@@ -10,6 +10,7 @@ function homeslice {
 	homeslice-ref-command "mkcd" "recursively create the directory, then cd into it"
 	homeslice-ref-command "topcmd" "show your top commands from your shell's history"
 	homeslice-ref-command "ansicolours" "show the ansi shell colour guide"
+	homeslice-ref-command "ffs" "sudo the last command"
 
 	homeslice-ref-section "Helpers for Web Services"
 

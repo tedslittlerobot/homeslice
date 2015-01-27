@@ -22,6 +22,9 @@ function topcmd {
 alias sthost='st /etc/hosts'
 alias stz='st ~/.zshrc'
 
+# sudo the last command
+alias ffs='sudo $(fc -ln -1)'
+
 function ansicolours {
 	# http://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 
