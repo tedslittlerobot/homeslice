@@ -17,7 +17,7 @@ function clonestream {
 	HS_CS_SUFFIX=${6:-$CLONESTREAM_SUFFIX}
 
 	test -z $HS_CS_URL_ORIGIN && echo "Specify a git origin account as the third argument or CLONESTREAM_ORIGIN" >&2 && return
-	test -z $HS_CS_URL_ORIGIN && echo "Specify a git upstream account as the fourth argument or CLONESTREAM_UPSTREAM" >&2 && return
+	test -z $HS_CS_URL_UPSTREAM && echo "Specify a git upstream account as the fourth argument or CLONESTREAM_UPSTREAM" >&2 && return
 
 	git clone $HS_CS_URL_URL$HS_CS_URL_ORIGIN/$HS_CS_URL_REPO$HS_CS_SUFFIX $HS_CS_URL_FOLDER
 	cd ${HS_CS_URL_FOLDER:-$HS_CS_URL_REPO}
