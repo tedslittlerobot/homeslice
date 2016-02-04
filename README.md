@@ -44,6 +44,18 @@ upslice
 
 ## Commands
 
+### Git
+
+#### `clonestream`
+
+```bash
+clonestream repo-name [folder origin upstream url suffix]
+```
+
+This command is a mix of a few common git commands. In short, it clones a forked repo, and adds the upstream repo.
+
+`CLONESTREAM_UPSTREAM` and `CLONESTREAM_UPSTREAM` (if they are set) are default values for the origin and upstream arguments. They should be the github upstream (original) and working (forked) accounts for the repo you are using.
+
 ### Vagrant
 
 - `stead` SSH into Homestead
