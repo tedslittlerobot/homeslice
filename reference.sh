@@ -18,6 +18,8 @@ function homeslice {
 
 	homeslice-ref-section "Git Helpers"
 	homeslice-ref-command "gitbattle" "show the top committers in a git repo"
+	homeslice-ref-command "gfap" "alias to git fetch all and prune"
+	homeslice-ref-command "clonestream project" "clones the forked and upstream project - see the README for setup info"
 
 	homeslice-ref-section "Vagrant Helpers"
 
