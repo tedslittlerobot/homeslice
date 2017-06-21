@@ -30,11 +30,8 @@ fi
 
 export HOMESTEAD_DIR=${HOMESTEAD_DIR:-~/Homestead}
 
-alias stead='ssh vagrant@127.0.0.1 -p 2222'
-alias hsup='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant up && popd >& /dev/null'
-alias hssr='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant halt && vagrant up && popd >& /dev/null'
-alias hshr='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant destroy -f && vagrant up && popd >& /dev/null'
-alias hsp='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant provision && popd >& /dev/null'
-alias hsd='pushd ${HOMESTEAD_DIR} >& /dev/null && vagrant halt && popd >& /dev/null'
+function homestead() {
+    ( cd ${HOMESTEAD_DIR} && vagrant $* )
+}
 
-alias sth='pushd ${HOMESTEAD_DIR} >& /dev/null && stt && popd >& /dev/null'
+alias hsrl="homestead reload --provision"
