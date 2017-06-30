@@ -73,3 +73,6 @@ alias csd="cap staging deploy"
 alias cse="cap staging ec2:status"
 alias cpd="cap production deploy"
 alias cpe="cap production ec2:status"
+
+alias cpssh="ssh deploy@`cpe | tail -n 1 | awk '{ print $5 }'`"
+alias csssh="ssh deploy@`cse | tail -n 1 | awk '{ print $5 }'`"
