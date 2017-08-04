@@ -64,15 +64,16 @@ function notes-optimise {
 	grep '\(\@optimi[sz]e.*$\)' -rino $1 | awk -F: '{printf "\033[1;34m%s\033[0m \033[0;37m(\033[0m\033[0;31m%s\033[0m:\033[0;33m%s\033[0m\033[0;37m)\033[0m\n", $3, $1, $2}'
 }
 
+command -v bundle >/dev/null 2>&1 && {
+    function cap() {
+        bundle exec cap $*
+    }
 
-function cap() {
-    bundle exec cap $*
+    alias csd="cap staging deploy"
+    alias cse="cap staging ec2:status"
+    alias cpd="cap production deploy"
+    alias cpe="cap production ec2:status"
+
+    alias cpssh="ssh deploy@`cpe | tail -n 1 | awk '{ print $5 }'`"
+    alias csssh="ssh deploy@`cse | tail -n 1 | awk '{ print $5 }'`"
 }
-
-alias csd="cap staging deploy"
-alias cse="cap staging ec2:status"
-alias cpd="cap production deploy"
-alias cpe="cap production ec2:status"
-
-alias cpssh="ssh deploy@`cpe | tail -n 1 | awk '{ print $5 }'`"
-alias csssh="ssh deploy@`cse | tail -n 1 | awk '{ print $5 }'`"
