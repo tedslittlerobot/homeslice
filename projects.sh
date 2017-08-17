@@ -74,6 +74,11 @@ command -v bundle >/dev/null 2>&1 && {
     alias cpd="cap production deploy"
     alias cpe="cap production ec2:status"
 
-    alias cpssh="ssh deploy@`cpe | tail -n 1 | awk '{ print $5 }'`"
-    alias csssh="ssh deploy@`cse | tail -n 1 | awk '{ print $5 }'`"
+    function cpssh {
+    	ssh deploy@`cpe | tail -n 1 | awk '{ print $5 }'`
+    }
+
+    function csssh {
+    	ssh deploy@`cse | tail -n 1 | awk '{ print $5 }'`
+    }
 }
