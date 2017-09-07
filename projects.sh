@@ -82,3 +82,7 @@ command -v bundle >/dev/null 2>&1 && {
     	ssh deploy@`cse | tail -n 1 | awk '{ print $5 }'`
     }
 }
+
+function bcb() {
+  berks cookbook $1 --skip-git --maintainer="Name Here" --maintainer-email=EMAIL@wearearchitect.com
+}
