@@ -1,6 +1,7 @@
 
 alias gitbattle='git shortlog -s -n'
 alias gfap='git fetch --all --prune'
+alias gfuck='git reset HEAD~'
 
 CLONESTREAM_URL=git@github.com:
 CLONESTREAM_SUFFIX=.git
