@@ -5,5 +5,5 @@ function _frb {
 
 	_arguments -C \
 		"1: :(staging production)"
-		"2: :(deploy ssh init first-deploy)"
+		"2: :(deploy deploy-touch push-assets build-push init first-deploy ssh)"
 }
