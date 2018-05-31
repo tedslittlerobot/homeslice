@@ -15,7 +15,7 @@ then add
 source ~/.homeslice/homeslice.sh
 ```
 
-to your zshrc, bashrc or whatever rc you use
+to your zshrc, bashrc or whatever rc you use. If you use oh my zsh, make sure to add it BEFORE you source that for completions to work.
 
 ## Custom Install
 

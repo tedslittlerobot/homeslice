@@ -23,6 +23,8 @@ source ${HOMESLICE_DIR}/projects.sh
 source ${HOMESLICE_DIR}/reference.sh
 source ${HOMESLICE_DIR}/fortrabbit.sh
 
+fpath=($HOMESLICE_DIR $fpath)
+
 # servers file
 
 if [ -f ~/.servers ]; then
