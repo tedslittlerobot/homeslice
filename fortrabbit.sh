@@ -3,11 +3,14 @@
 ################# BASE COMMAND #################################################
 
 function frb {
-    test -z $1 && echo "You must specify an environment to use" >&2 && return
-    test -z $2 && echo "You must specify an action!" >&2 && return
     FRB_DEPLOY_ENV=$1
     FRB_DEPLOY_ACTION=$2
     FRB_CURRENT_BRANCH=`_frb_get_current_branch`
+
+
+
+    test -z $FRB_DEPLOY_ENV && _frb_help_message && return
+    test -z $FRB_DEPLOY_ACTION && _frb_help_message && return
 
     if [[ "$FRB_DEPLOY_ACTION" == "deploy" ]]; then
         _frb_deploy $FRB_DEPLOY_ENV
@@ -42,6 +45,39 @@ function frb {
     fi
 
     git checkout $FRB_CURRENT_BRANCH
+}
+
+function _frb_help_message {
+    echo
+    echo '================================================================================';
+    echo '=============== frb tool =======================================================';
+    echo '================================================================================';
+    echo
+    echo 'Usage: frb [environment] [action]'
+    echo
+    echo 'The [environment] should be an environment set up in your project'
+    echo
+    echo 'The [action] should be one of:'
+    echo ' - deploy       : Deploys to stage'
+    echo ' - deploy-touch : Deploys without uploading any assets'
+    echo ' - push-assets  : Push assets'
+    echo ' - build-push   : Build and push assets'
+    echo ' - init         : Set up FRB with your local git'
+    echo ' - first-deploy : Run the first deploy'
+    echo ' - ssh          : SSH into the server'
+    echo ' - reset        : Reset the FRB instance'
+    echo
+    echo '--------------------------------------------------------------------------------';
+    echo
+    echo 'There should be an environment config file in ./deploy - for example,'
+    echo '`./deploy/staging` or `./deploy/production'.
+    echo
+    echo 'It should contain the following data on these lines only:'
+    echo '1. Fortrabbit App Name'
+    echo '2. Fortrabbit Repo Address'
+    echo '3. Branch to deploy'
+    echo '4. The build command'
+    echo '5. The relative asset build directory'
 }
 
 ################# ACTION: INIT #################################################
