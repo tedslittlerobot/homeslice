@@ -21,6 +21,7 @@ source ${HOMESLICE_DIR}/web.sh
 source ${HOMESLICE_DIR}/system.sh
 source ${HOMESLICE_DIR}/projects.sh
 source ${HOMESLICE_DIR}/reference.sh
+source ${HOMESLICE_DIR}/fortrabbit.sh
 
 # servers file
 
