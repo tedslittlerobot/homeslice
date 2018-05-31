@@ -41,7 +41,7 @@ function frb {
         _frb_reset $FRB_DEPLOY_ENV
     fi
 
-    git checkout $CURRENT_BRANCH
+    git checkout $FRB_CURRENT_BRANCH
 }
 
 ################# ACTION: INIT #################################################
