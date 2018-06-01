@@ -33,28 +33,7 @@ case $state in
 
   (options)
     case $line[1] in
-    	(deploy)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(deploy-touch)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(push-assets)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(build-push)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(setup)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(first-deploy)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(ssh)
-    		_arguments "*: :(`_get_envs`)"
-    	;;
-    	(reset)
+    	(deploy|deploy-touch|push-assets|build-push|setup|first-deploy|ssh|reset)
     		_arguments "*: :(`_get_envs`)"
     	;;
     esac
