@@ -21,9 +21,9 @@ source ${HOMESLICE_DIR}/web.sh
 source ${HOMESLICE_DIR}/system.sh
 source ${HOMESLICE_DIR}/projects.sh
 source ${HOMESLICE_DIR}/reference.sh
-source ${HOMESLICE_DIR}/fortrabbit.sh
 
-fpath=($HOMESLICE_DIR $fpath)
+fpath=($HOMESLICE_DIR/bin $fpath)
+export PATH=$HOMESLICE_DIR/bin:$PATH
 
 # servers file
 

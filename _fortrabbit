@@ -1,9 +1,0 @@
-#compdef _frb frb
-
-function _frb {
-	line local
-
-	_arguments -C \
-		"1: :(staging production)"
-		"2: :(deploy deploy-touch push-assets build-push init first-deploy ssh)"
-}

@@ -1,0 +1,62 @@
+#compdef frb
+
+function _get_envs {
+	ls .deploy/
+}
+
+local -a _1st_arguments
+_1st_arguments=(
+	'ssh:SSH into the server'
+	'deploy:Build and deploy the project'
+	'deploy-touch:Only deploy code changes'
+	'push-assets:Push currently built assets'
+	'build-push:Build and push assets'
+	'setup:Set up the git remote'
+	'first-deploy:Run the first deploy to link up branches'
+	'reset:Reset the FRB remote'
+	'help:Show the help message'
+	'environment:Create a new environment file'
+)
+
+local curcontext="$curcontext" state line
+typeset -A opt_args
+
+_arguments -C \
+    ':command:->command' \
+    '*::options:->options'
+
+case $state in
+  (command)
+      _describe -t commands "vagrant subcommand" _1st_arguments
+      return
+  ;;
+
+  (options)
+    case $line[1] in
+    	(deploy)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(deploy-touch)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(push-assets)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(build-push)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(setup)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(first-deploy)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(ssh)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    	(reset)
+    		_arguments "*: :(`_get_envs`)"
+    	;;
+    esac
+  ;;
+esac
