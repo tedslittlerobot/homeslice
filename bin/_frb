@@ -22,8 +22,8 @@ local curcontext="$curcontext" state line
 typeset -A opt_args
 
 _arguments -C \
-    ':command:->command' \
-    '*::options:->options'
+    '1:command:->command' \
+    '2::options:->options'
 
 case $state in
   (command)
