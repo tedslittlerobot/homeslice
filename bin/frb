@@ -32,7 +32,7 @@ function _frb_help_message {
     echo
     echo 'The [action] should be one of:'
     echo ' - deploy       : Deploys to stage'
-    echo ' - deploy-touch : Deploys without uploading any assets'
+    echo ' - touch-deploy : Deploys without uploading any assets'
     echo ' - push-assets  : Push assets'
     echo ' - build-push   : Build and push assets'
     echo ' - setup        : Set up FRB with your local git'
@@ -211,7 +211,7 @@ if [[ "$FRB_DEPLOY_ACTION" == "help" ]]; then
 elif [[ "$FRB_DEPLOY_ACTION" == "deploy" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
     _frb_deploy $FRB_DEPLOY_ENV
-elif [[ "$FRB_DEPLOY_ACTION" == "deploy-touch" ]]; then
+elif [[ "$FRB_DEPLOY_ACTION" == "touch-deploy" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
     _frb_deploy_touch $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "push-assets" ]]; then
