@@ -1,26 +1,11 @@
 #! /usr/bin/env zsh
 
-function _print_error {
-	echo '############### ERROR ##########################################################'
-	echo $1 >&2
-	echo '################################################################################'
-}
-
-function _frb_require_env {
-	test -z $1 && _print_error 'You must specify an environment to deploy to.' && exit 1
-
-	test ! -f .deploy/$1 && _print_error "There is no environment file for [$1]." && exit 1
-}
-
-function _frb_require_unique_env {
-	test -z $1 && _print_error 'You must specify a new environment.' && exit 1
-
-	test -f .deploy/$1 && _print_error "The environment [$1] already exists." && exit 1
-}
+# @todo - use key-value DSL for env files
+# @todo - colourise!
 
 ################# HELP MESSAGE #################################################
 
-function _frb_help_message {
+function _frb_action_help_message {
     echo
     echo '================================================================================';
     echo '=============== frb tool =======================================================';
@@ -56,7 +41,7 @@ function _frb_help_message {
 
 ################# ACTION: INIT #################################################
 
-function _frb_init {
+function _frb_action_setup {
     FRB_ENV=$1
     FRB_REPO=`_frb_get_repo $FRB_ENV`
     git remote add `_frb_remote_name $FRB_ENV` $FRB_REPO
@@ -65,7 +50,7 @@ function _frb_init {
 
 ################# ACTION: SSH ##################################################
 
-function _frb_ssh {
+function _frb_action_ssh {
     FRB_ENV=$1
     SERVER=`_frb_get_ssh $FRB_ENV`
     ssh $SERVER
@@ -73,7 +58,7 @@ function _frb_ssh {
 
 ################# ACTION: RESET ################################################
 
-function _frb_reset {
+function _frb_action_reset {
     FRB_ENV=$1
     SERVER=`_frb_get_ssh $FRB_ENV`
     ssh $SERVER reset
@@ -81,7 +66,7 @@ function _frb_reset {
 
 ################# ACTION: FIRST DEPLOY #########################################
 
-function _frb_first_deploy {
+function _frb_action_first_deploy {
     FRB_ENV=$1
     DEPLOY_BRANCH=`_frb_get_branch $FRB_ENV`
     FRB_SERVER=`_frb_get_ssh $FRB_ENV`
@@ -95,7 +80,7 @@ function _frb_first_deploy {
 
 ################# ACTION: DEPLOY TOUCH #########################################
 
-function _frb_deploy_touch {
+function _frb_action_deploy_touch {
     FRB_ENV=$1
     DEPLOY_BRANCH=`_frb_get_branch $FRB_ENV`
     FRB_SERVER=`_frb_get_ssh $FRB_ENV`
@@ -108,7 +93,7 @@ function _frb_deploy_touch {
 
 ################# ACTION: DEPLOY ###############################################
 
-function _frb_deploy {
+function _frb_action_deploy {
     FRB_ENV=$1
     DEPLOY_BRANCH=`_frb_get_branch $FRB_ENV`
     FRB_SERVER=`_frb_get_ssh $FRB_ENV`
@@ -116,23 +101,23 @@ function _frb_deploy {
     git fetch --all
     git checkout $DEPLOY_BRANCH
 
-    _frb_build_and_push $FRB_ENV
+    _frb_action_build_and_push $FRB_ENV
 
     git push `_frb_remote_name $FRB_ENV` ${DEPLOY_BRANCH}:master
 }
 
 ################# ACTION: BUILD AND PUSH ASSETS ################################
 
-function _frb_build_and_push {
+function _frb_action_build_and_push {
     FRB_ENV=$1
 
     _frb_run_build $FRB_ENV
-    _frb_push_assets $FRB_ENV
+    _frb_action_push_assets $FRB_ENV
 }
 
 ################# ACTION: PUSH ASSETS ##########################################
 
-function _frb_push_assets {
+function _frb_action_push_assets {
     FRB_ENV=$1
     FRB_APP_NAME=`_frb_get_app_name $FRB_ENV`
     FRB_SERVER=`_frb_get_ssh $FRB_ENV`
@@ -146,7 +131,7 @@ function _frb_push_assets {
 
 ################# ACTION: CREATE ENV ###########################################
 
-function _frb_create_environment {
+function _frb_action_environment {
     FRB_ENV=$1
 
 	mkdir -p .deploy
@@ -197,6 +182,24 @@ function _frb_remote_name {
     echo "fortrabbit-$1"
 }
 
+function _print_error {
+    echo '############### ERROR ##########################################################'
+    echo $1 >&2
+    echo '################################################################################'
+}
+
+function _frb_require_env {
+    test -z $1 && _print_error 'You must specify an environment to deploy to.' && exit 1
+
+    test ! -f .deploy/$1 && _print_error "There is no environment file for [$1]." && exit 1
+}
+
+function _frb_require_unique_env {
+    test -z $1 && _print_error 'You must specify a new environment.' && exit 1
+
+    test -f .deploy/$1 && _print_error "The environment [$1] already exists." && exit 1
+}
+
 ################# BASE COMMAND #################################################
 
 FRB_DEPLOY_ACTION=$1
@@ -204,41 +207,41 @@ FRB_DEPLOY_ENV=$2
 FRB_CURRENT_BRANCH=`_frb_get_current_branch`
 
 # If no action is set, show the help message
-test -z $FRB_DEPLOY_ACTION && _frb_help_message && return
+test -z $FRB_DEPLOY_ACTION && _frb_action_help_message && return
 
 if [[ "$FRB_DEPLOY_ACTION" == "help" ]]; then
-    _frb_help_message
+    _frb_action_help_message
 elif [[ "$FRB_DEPLOY_ACTION" == "deploy" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_deploy $FRB_DEPLOY_ENV
+    _frb_action_deploy $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "touch-deploy" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_deploy_touch $FRB_DEPLOY_ENV
+    _frb_action_deploy_touch $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "push-assets" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_push_assets $FRB_DEPLOY_ENV
+    _frb_action_push_assets $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "build-push" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_build_and_push $FRB_DEPLOY_ENV
+    _frb_action_build_and_push $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "setup" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_init $FRB_DEPLOY_ENV
+    _frb_action_setup $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "first-deploy" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_first_deploy $FRB_DEPLOY_ENV
+    _frb_action_first_deploy $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "ssh" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_ssh $FRB_DEPLOY_ENV
+    _frb_action_ssh $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "reset" ]]; then
 	_frb_require_env $FRB_DEPLOY_ENV
-    _frb_reset $FRB_DEPLOY_ENV
+    _frb_action_reset $FRB_DEPLOY_ENV
 elif [[ "$FRB_DEPLOY_ACTION" == "environment" ]]; then
 	_frb_require_unique_env $FRB_DEPLOY_ENV
-    _frb_create_environment $FRB_DEPLOY_ENV
+    _frb_action_environment $FRB_DEPLOY_ENV
 else
 	_print_error "There is no such action [$FRB_DEPLOY_ACTION]"
 
-	_frb_help_message
+	_frb_action_help_message
 
 	exit 1
 fi
