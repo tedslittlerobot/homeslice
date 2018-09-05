@@ -1,4 +1,4 @@
-#compdef frb
+#compdef frb_old
 
 function _get_envs {
 	ls .deploy/
